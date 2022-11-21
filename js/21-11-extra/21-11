@@ -1,0 +1,15 @@
+1. declare a circle object having a PI variable 
+clacArea function that receives radius and return the area using the PI 
+calcHekef function that receives radius and return the hekef .
+
+2. declare a dog object having  name age kind and favfood 
+the dog object incloudes bark function that prints his name and a bark 
+
+3. what is switch case ?
+4. how to declare a date of 15/6/2021 ?
+5. what is the day in week  on  the 31/12/2022 ?
+6. what is my name ? 
+7. give a 2 primitive types in javascript
+8. what is i in for loop and what its represents ? can we user another var
+9. how to declare array in js ?
+10. length is an object or attribute ? 

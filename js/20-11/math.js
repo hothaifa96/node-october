@@ -16,5 +16,28 @@
 
 
 
+let myMath = {
+    PI:3.14,
+    max:(a,b) => Math.max(a,b),
+    min:(a,b) => Math.min(a,b),
+    idOdd:(a) => a%2==1,
+    lengthOfstring:(str) => str.length,
+    // power(a,b){
+    //     let temp=1;
+    //     while(b>0){
+    //         temp=temp*a;
+    //         b--
+    //     }
+    //     return temp;
+    // }
+    // power: (a,b) => a**b
+    power (a,b){
+        let temp=1;
+        for(i=1;i<=b;i++)
+            temp*=a;
+        return temp
+    }
+};
 
+console.log(myMath.power(2,3))
 
