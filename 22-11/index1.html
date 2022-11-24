@@ -10,7 +10,7 @@
     
     <p style="font-size:10px; ;" id="par" > TEXT SECTION</p>
 
-    <button onclick="getdate();" > Get Date </button>
+    <button onclick="quarter();" > Get Date </button>
     <button onclick="chfont(1);" > increase </button>
     <button onclick="chfont(-1);" > decreace </button>
 
@@ -20,6 +20,13 @@
     <input  type="text" onchange="change();" id="text1">
 
     <script>
+
+        function quarter() {
+            window.resizeTo(
+            window.screen.availWidth / 2,
+            window.screen.availHeight / 2
+        );
+         }
         let flag = true;
         // Get Date abutton function
         function getdate(){
@@ -52,6 +59,8 @@
 
 
     </script>
+
+
 
     <!-- add p with id  and add a button if you click the button the the content of the paragraph will change to be the date of today   -->
 
