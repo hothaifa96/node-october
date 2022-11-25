@@ -117,7 +117,13 @@ let x = 5;
 
 for(i=0; i<10; i++){
     if(i==3)
-        continue
-        
-    console.log(i)
+        continue;
+    console.log(i);
 }
+
+
+// write a loop to iterate array names within 5 names of your choice    
+// change every cell in the array to upper case   
+// if the name have 'd' in it finish the program 
+//if the name length less than 5 do not upper case it 
+

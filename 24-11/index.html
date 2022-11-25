@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="loops.js" > </script>
+
+    
+    <img  id="h1" src="./images/ham.jpg" alt="" style="width: 150px ;">
+    <select name="select" id="select" onchange="change();" >chose a color
+        <option value="./images/ham.jpg" >...</option>
+        <option value="./images/tofu.jpg" >red</option>
+    </select>
+    <script >
+        
+    function change(){
+        let select =document.getElementById('select');
+        let h2= document.getElementById('h1');
+        h2.src="./images/tofu.jpg";
+        console.log(select.value)
+    
+    }
+    </script>
 </body>
 </html>
