@@ -5,19 +5,32 @@ class Counter extends Component {
         count:0,
         names:['nadav','tommy','adi','tommer']
     };
-
     style={
         fontSize:30
     }
-
     render() { 
-
         return (
         <div>
             <h1 style={this.style} className={this.changeBG()}>{this.formatCount()} </h1>
-            <button className="btn btn-dark btn-sm">+</button>
-            <ul>{ this.state.names.map( name => <li key={name} >{ name }</li>) } </ul>
+            <button  
+            onClick={this.handleIncrement}
+             className="btn btn-dark btn-sm"
+             > + </button>
+
         </div>);
+    }
+
+    // constructor(){
+    //     super(); // create a componenet from its coinstructor
+    //     // this in the const is the Class it self 
+    //     // we use the bind functio to pass over the this top anew function
+    //     this.handleIncrement = this.handleIncrement.bind(this);// this function returns a new function 
+
+
+    // }
+
+    handleIncrement=()=>{
+        this.setState( {count: this.state.count +1} );
     }
 
     changeBG() {

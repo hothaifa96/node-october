@@ -9,7 +9,7 @@ import Buttons from './components/buttons';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Buttons />
+    <Counter />
   </React.StrictMode>
 );
 
