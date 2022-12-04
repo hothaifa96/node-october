@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import Counter from "./components/counter";
 import Buttons from './components/buttons';
 import Message from './components/message';
+import Counters from './components/counters';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Message />
+    <Counters/>
   </React.StrictMode>
 );
 
