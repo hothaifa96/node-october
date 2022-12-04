@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 class Message extends Component {
     state = {
         names:['hodi'],
-        withStyle:true
+        withStyle:true,
+        type:'button'
     } 
 
 
@@ -13,14 +14,38 @@ class Message extends Component {
                />
                <input checked={this.state.withStyle} className='ms-4' type="checkbox" name="check" id="check" 
                onChange={this.changeStyle}/> 
-               <label htmlFor="check"> WithStyle ?</label>
+               <label htmlFor="check"> WithStyle ?</label> 
+               <select name="typeo"  className='ms-3' onChange={(en)=>this.changeType(en)}>
+                <option value="button"> button</option>
+                <option value="h1"> h1</option>
+                <option value="img">img</option>
+
+               </select>
                <br />
-               { this.state.names.map(name=> <button key={name} 
-               className={ this.state.withStyle ? this.getclasses(name) : '' }  > {name} </button>) }
+               { this.state.names.map(name=> this.generateElement(name)) }
 
             </div>
         );
     }
+
+    generateElement(name){
+        switch(this.state.type){
+        case 'button':
+            return <button key={name} className={ this.state.withStyle ? this.getclasses(name) : '' }  > {name} </button>;
+        case 'h1':
+            return<h1 key={name} > {name} </h1>
+        case 'img':
+            return<img src="fjnasifksaajfa" alt={name} />
+        }
+    }
+
+
+    changeType=(en)=>{
+       this.state.type=en.target.value;
+       console.log(this.state.type);
+       this.setState({type: this.state.type});
+    }
+
 
     changeStyle=()=>{
         this.state.withStyle= !this.state.withStyle;
