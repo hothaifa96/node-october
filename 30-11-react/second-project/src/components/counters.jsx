@@ -8,7 +8,6 @@ class Counters extends Component {
             {id:1},
             {id:2},
             {id:3},
-            
         ]
     } 
     render() { 
