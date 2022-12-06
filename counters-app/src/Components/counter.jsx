@@ -2,23 +2,27 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
     state ={
-        count:this.props.value,
+        count:this.props.value
     };
 
     render() { 
         console.log(this.props);
         return (
         <div>
-            <span style={this.style} >{this.formatCount()} </span>
+            {this.props.children}
+            <span className='m5' style={this.style} >{this.formatCount()} </span>
             <button  
             onClick={this.handleIncrement}
-             className="btn btn-dark btn-sm"
+             className="btn btn-success btn-sm"
              > + </button>
-             <label >{this.props.id}</label>
+            <button onClick={this.props.delete} className="btn btn-danger m-2 btn-sm">Delete</button>
 
         </div>);
     }
 
+    handleDelete(){
+
+    }
 
     handleIncrement=()=>{
         this.setState( {count: this.state.count +1} );
