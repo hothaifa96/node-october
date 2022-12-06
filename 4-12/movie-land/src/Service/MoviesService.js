@@ -30,6 +30,11 @@ export function getMovies(){
     return movies;
 }
 
+export function DeleteItem(id){
+    movies= movies.filter(movie => movie.id !==id );
+    return movies;
+}
+
 export function getMovie(id){
     return movies.find(m => m.id == id);
 }

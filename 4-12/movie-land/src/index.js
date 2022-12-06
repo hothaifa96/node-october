@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Movies from './components/movies';
+import Biggy from './components/biggy';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Movies />
+    <Biggy />
   </React.StrictMode>
 );
 
