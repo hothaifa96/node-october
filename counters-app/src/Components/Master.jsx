@@ -9,7 +9,7 @@ class Master extends Component {
         return (
             <React.Fragment>
                 <NavBar/>
-                <Main />
+                <Main classes="bg-danger"/>
             </React.Fragment>
         );
     }
