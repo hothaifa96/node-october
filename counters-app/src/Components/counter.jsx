@@ -22,10 +22,22 @@ class Counter extends Component {
         </div>);
     }
 
+    componentDidUpdate(prevState,prevProps){
+        // AJAX 
+        console.log('prevState-',prevState)
+        console.log('prevProps-',prevProps)
+    }
    
     formatCount(){
         return this.props.value===0? 'Zero': this.props.value;
     }
+
+    componentWillUnmount(){
+        console.log(' see you again ohhh oooooooh ohhhhh o');
+    }
 }
  
 export default Counter;
+
+
+

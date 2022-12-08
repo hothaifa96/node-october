@@ -5,13 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import Counter from './Components/counter';
 import Counters from './Components/counters';
 import Movies from './Components/movies';
-import App from './Components/app';
+import CountersList from './Components/app';
+import { BrowserRouter } from 'react-router-dom';
+import Master from './Components/Master';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>
+  <BrowserRouter>
+    <Master/>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
