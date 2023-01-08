@@ -9,7 +9,6 @@ const User=  new mongoose.model('User',new mongoose.Schema({
         required: true,
         maxlength: 50, 
         minlength: 2,
-
     },
     password:{
         type: String,

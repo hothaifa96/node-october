@@ -1,98 +1,83 @@
+
 const express = require('express')
-const Joi = require('joi')
+const {validate,Animal} = require('../Models/animals')
 const router = express.Router()
-
-const animals=[
-    {id:1,name:'chewawa the dog',color:'black'},
-    {id:2,name:'shoun the sheep',color:'salmon'},
-    {id:3,name:'jokono the puma',color:'white'},
-    {id:4,name:'adi the cupra',color:'peachpuff'}
-]
-
 
 
 //GET ALL ANIMALS 
-router.get('/',(req,res)=>{
+router.get('/',async (req,res)=>{
+    const animals = await Animal.find().sort('name').select('name color -_id');
     res.send(animals);
 });
 
 // GET BY ID 
-router.get('/:id',(req, res)=>{
+router.get('/:id',async (req, res)=>{
     //res.send(`localhost:${port}//${req.params.id}?${'email'}=${req.query['email']}`)
-
-    const animal= animals.find(a => a.id===parseInt(req.params.id))
+    const animal= await Animal.findById(req.params.id);
     if(!animal)
-        res.status(404).send('this id is not valid ')
+        res.status(400).send('this id is not valid ')
     res.send(animal)
 
 });
 
 //ADD NEW ANIMAL 
-router.post('/',(req,res)=>{
-    const schema = {
-        name: Joi.string().min(4).required(),
-        color: Joi.required()
-    };
+router.post('/',async (req,res)=>{
 
-    const results = Joi.validate(req.body,schema)
-    
-
+    const results = validate(req.body)
     if(results.error){
         // bad REQUEST 400
         res.status(400).send(results.error.details[0].message)
         return
     }
-    const animal = {
-        id:animals.length+1,
-        name:req.body.name,
-        color: req.body.color
-    };
-    animals.push(animal)
+
+    let animal = new Animal({
+        name: req.body.name,
+        age: req.body.age,
+        color: req.body.color,
+        flying : req.body.flying
+    });
+    animal = await animal.save()
     res.send(animal)
 });
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',async(req,res)=>{
     // search the animal 
-    const animal= animals.find(a => a.id=== parseInt(req.params.id))
-    if(!animal){
-        res.status(404).send('this animal does not exist')
+    const {error} = validate(req.body);
+    
+    if(error){
+        res.status(400).send(error.details[0].message);
         return;
     }
-    const schema={
-        name: Joi.string().min(4).required(),
-        color: Joi.required()
+
+    const animal = await Animal.findByIdAndUpdate(req.params.id,
+        {
+            $set:{
+                name: req.body.name,
+                age: req.body.age,
+                color: req.body.color,
+                flying: req.body.flying,
+            }
+            , new: true
+        })
+        
+    if(!animal){
+        res.status(400).send('this animal does not exist');
+        return;
     }
-    const results =  Joi.validate(req.body,schema);
-    if(results.error){
-        res.status(400).send(results.error.details[0].message)
-    }
-
-    const new_animal= {
-        id: req.params.id,
-        name: req.body.name,
-        color: req.body.color
-    }
-
-    const index = animals.findIndex(e=> e.id === parseInt(req.params.id))
-    animals.splice(index,1,new_animal)
-    res.send(new_animal);
-
-
+    res.send(animal)
 });
 
 
 //DELETE 
-router.delete('/:id',(req,res)=>{
-    const animal= animals.find(a => a.id=== parseInt(req.params.id))
+router.delete('/:id',async (req,res)=>{
+    const animal= await Animal.findByIdAndRemove(req.params.id);
     if(!animal){
-        res.status(404).send('this animal does not exist')
+        res.status(400).send('this animal does not exist')
         return;
     }
-
-    const index = animals.findIndex(e=> e.id === parseInt(req.params.id))
-    animals.splice(index,1)
-    res.send('DONE');
+    res.send(true);
 })
+
 
 
 module.exports = router ;
