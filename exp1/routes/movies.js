@@ -9,6 +9,11 @@ const movies=[
     name: 'node-js',
     genre:'horror', 
     length: 120 
+  },
+  {id:2,
+    name: 'node-2s',
+    genre:'horror', 
+    length: 120 
   }
 ]
 

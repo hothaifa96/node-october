@@ -8,7 +8,8 @@ const Movies = () => {
 
     useEffect(() => {
         async function getlist(){
-            const l= await axios.get('https://jsonplaceholder.typicode.com/users')
+            const l= await axios.get('http://localhost:3030/api/movies')
+            console.log(l.data);
             setlist(l.data);
         }
         getlist();
@@ -17,7 +18,7 @@ const Movies = () => {
     return (
         <div>
             <ul>
-                {list.map(movie => <li key={movie.id}>{movie.name}</li>)}
+                {list.map(animal => <li key={animal.id}>{animal.name}</li>)}
             </ul>
         </div>
     );

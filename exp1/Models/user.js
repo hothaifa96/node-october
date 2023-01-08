@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const Joi = require('joi')
 
-
-
 const User=  new mongoose.model('User',new mongoose.Schema({
     name:{
         type: String,
