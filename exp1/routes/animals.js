@@ -2,10 +2,10 @@
 const express = require('express')
 const {validate,Animal} = require('../Models/animals')
 const router = express.Router()
-
+const auth= require('../middlewares/auth')
 
 //GET ALL ANIMALS 
-router.get('/',async (req,res)=>{
+router.get('/',auth,async (req,res)=>{
     const animals = await Animal.find().sort('name').select('name color -_id');
     res.send(animals);
 });

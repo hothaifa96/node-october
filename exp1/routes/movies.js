@@ -1,76 +1,71 @@
 const express = require('express')
 const Joi = require('joi')
-const { route } = require('./animals')
+const {Movie,validate} = require('../Models/movies');
 
 const router = express.Router()
 
-const movies=[
-    {id:1,
-    name: 'node-js',
-    genre:'horror', 
-    length: 120 
-  },
-  {id:2,
-    name: 'node-2s',
-    genre:'horror', 
-    length: 120 
-  }
-]
-
 //getAll
-router.get('/', (req, res) => {
-    res.send(movies)
+router.get('/', async (req, res) => {
+  const movies = await Movie.find().sort('name').select('name genre -_id');
+  res.send(movies);
   })
   //get
-  router.get('/:id', (req, res) => {
-      
-    res.send(movies.find(m => m.id == req.params.id))
+  router.get('/:id', async (req, res) => { 
+    const movie = await Movie.findById(req.params.id);
+  res.send(movie);
   })
   //post
-  router.post('/',  (req, res)=> {
-      const {error} =validator(req.body)
-      if(error){
-          res.status(404).send(error.details[0].message)
-          return;
-      }
-      movies.push({...req.body, id:movies.length+1})
-      res.send(movies[movies.length-1])
+  router.post('/',  async (req, res)=> {
+    const results = validate(req.body)
+    if(results.error){
+        // bad REQUEST 400
+        res.status(400).send(results.error.details[0].message)
+        return
+    }
+
+    let movie = new Movie({
+        name: req.body.name,
+        genre: req.body.genre,
+        year: req.body.year,
+        avalibale : req.body.avalibale
+    });
+    movie = await animal.save()
+    res.send(animal)
   })
   //delete
-  router.delete('/:id', (req, res)=> {
+  router.delete('/:id', async (req, res)=> {
     const { id } = req.params;
-    movies.filter( m => m.id != id)
-    res.send(`Delete record with id ${id}`);
+    const movie= await Movie.findByIdAndRemove(id)
+    return movie;
   });
   //put
-  router.put('/', function(req, res) {
-    const { id } = req.body;
-    const {error} =validator(req.body)
-      if(error){
-          res.status(404).send(error.details[0].message)
-          return;
-      }
-      movies.splice(movies.indexOf(a=>a.id==id),1,{...req.body, id:movies.length+1})
-      res.send('updated');
+  router.put('/', async function(req, res) {
+    const {error} = validate(req.body);
+    
+    if(error){
+        res.status(400).send(error.details[0].message);
+        return;
+    }
+
+    const movie = await Movie.findByIdAndUpdate(req.params.id,
+        {
+            $set:{
+                name: req.body.name,
+                year: req.body.year,
+                genre: req.body.genre,
+                avalibale: req.body.avalibale,
+            }
+            , new: true
+        })
+        
+    if(!movie){
+        res.status(400).send('this animal does not exist');
+        return;
+    }
+    res.send(movie)
   });
   
-  //delete all
-  router.delete('/', function(req, res) {
-    movies=[];
-    res.send(`Done`);
-  });
-  
-  let validator = (obj)=> {
-      const schema = {
-          name: Joi.string().required().min(3).max(10),
-          id: Joi ,
-          genre: Joi.string().required().min(3).max(10),
-          length: Joi.number().required().integer().min(3).max(1000)
-      }
-      
-      return Joi.validate(obj,schema) ;
-      
-  }
+
 
 
 module.exports = router

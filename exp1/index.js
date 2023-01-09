@@ -1,12 +1,14 @@
 const express = require('express')
-const movie = require('./routes/movies')
 const app = express();
 const log = require("./middlewares/logger")
 const authenticate = require("./middlewares/authentication")
 const morgan=  require('morgan')
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
+const movie = require('./routes/movies')
 const animal = require('./routes/animals');
+const auth = require('./routes/auth');
+const user = require('./routes/user');
 
 mongoose.set('strictQuery', false)
 mongoose.connect('mongodb://localhost:27017/movies').then(()=>console.log('connected'))
@@ -21,10 +23,12 @@ app.use(express.static('public'))
 if (app.get('env') === 'development')
   app.use(morgan('tiny'))
 
+console.log('here')
+
 app.use('/api/movies',movie);
 app.use('/api/animals',animal);
-app.use('/api/users',movie);
-app.use('/api/auth',movie);
+app.use('/api/users',user);
+app.use('/api/auth',auth);
 
 
 // PORT 
