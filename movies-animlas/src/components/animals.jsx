@@ -1,27 +1,24 @@
-import React from 'react';
-import { useState,useEffect } from "react";
-import axios from "axios";
+import React from 'react'
+import { useEffect ,useState } from 'react'
+import axios from 'axios'
 
-const Animals = () => {
-    const [list, setlist] = useState([]);
+export default function Animals() {
+    const [names, setname] = useState([])
 
-    useEffect(() => {
-        async function getlist(){
-            const l= await axios.get('http://localhost:3030/api/movies')
-            console.log(l.data);
-            setlist(l.data);
+    useEffect(()=>{
+        async function getData(){
+            const {data} = await axios.get('http://localhost:3002/api/animals');
+            setname(data) ;
         }
-        getlist();
-    },[]);
-    
-    return (
-        <div>
-            <ul>
-                {list.map(animal => <li key={animal.id}>{animal.name}</li>)}
-            </ul>
-        </div>
-    );
-}
+        getData()
+    },[])
 
-export default Animals;
-    
+  return (
+    <div>
+        <ol>
+        {names.map(name => 
+        <li key={name.id}>{name.name}</li>)}
+         </ol>
+    </div>
+  )
+}

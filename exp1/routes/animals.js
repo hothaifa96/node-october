@@ -2,7 +2,8 @@
 const express = require('express')
 const {validate,Animal} = require('../Models/animals')
 const router = express.Router()
-const auth= require('../middlewares/auth')
+const auth = require('../middlewares/auth')
+
 
 //GET ALL ANIMALS 
 router.get('/',auth,async (req,res)=>{

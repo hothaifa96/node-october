@@ -1,20 +1,24 @@
-import { async } from 'jshint/src/prod-params';
-import React from 'react';
-import { useState,useEffect } from 'react';
-const Main = () => {
-    const [list, setlis] = useState([]);
+import React from 'react'
+import NavBar from './navBar'
+import { Routes } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import Animals from './animals'
+import Register from './register'
+import Auth from './auth'
 
-    useEffect(() => {
-        async function getlist(){
-            
-        }
-        
-    }, []);
+export default function Main() {
+  
+
     return (
-        <div>
-            <p></p>
-        </div>
-    );
-}
+    <div>
+    <NavBar/>
+    <Routes> 
+        <Route path="/animals"  element ={ <Animals/>} />         
+        <Route path="/register"  element ={ <Register/>} />         
+        <Route path="/auth"  element ={ <Auth/>} />         
+       
+    </Routes>     
 
-export default Main;
+    </div>
+  )
+}

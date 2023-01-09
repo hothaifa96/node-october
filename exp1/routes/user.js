@@ -1,18 +1,13 @@
 const _=require('lodash')
 const bcrypt =require('bcrypt')
 const express = require('express')
-const {User,validate} = require('../Models/user');
-const auth = require('../middlewares/auth');
+const mongoose = require('mongoose')
+const {User,validate} = require('../Models/user')
 const router = express.Router();
+const jwt = require('jsonwebtoken')
 
-router.get('/me',auth,async(req,res)=>{
-    const user = await User.findById(req.user._id).select('-password')
-    res.send(user)
-
-})
 
 router.post('/', async (req, res) => {
-    console.log(req.body)
   const {error} = validate(req.body)
   if(error) return res.status(400).send(error.details[0].message)
   
@@ -31,8 +26,11 @@ router.post('/', async (req, res) => {
     catch(err){
         res.status(500).send('somethong went wrong')
     }    
-
-    res.header('x-auth-token',user.generateJWT()).header("access-control-expose-headers",'x-auth-token').send(_.pick(user,['name','email']));
+    
+    res
+    .header('x-auth-token',user.generateJWT())
+    .header('access-control-expose-headers','x-auth-token')
+    .send(_.pick(user,['name','email']));
 })
 
 
