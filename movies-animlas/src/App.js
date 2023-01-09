@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import Movies from './components/movies';
 import Animals from './components/animals';
+import Register from './components/register';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/addanimal" element={<Main />}/>
         <Route path="/addmovie" element={<Main />}/>
         <Route path='/movies' element={<Movies/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
       
     </div>

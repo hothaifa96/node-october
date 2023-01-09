@@ -1,4 +1,5 @@
 import React from 'react';
+import Register from './register';
 
 const NavBar = () => {
     return (
@@ -15,6 +16,7 @@ const NavBar = () => {
         <a class="nav-link" href="/animals">Animals</a>
         <a class="nav-link" href="#">add Animals</a>
         <a class="nav-link" href="#">add Movie</a>  
+        <a class="nav-link" href="/register">Register</a>  
       </div>
     </div>
   </div>

@@ -7,9 +7,7 @@ const Animals = () => {
 
     useEffect(() => {
         async function getlist(){
-            const l= await axios.get('http://localhost:3030/api/animals',{},{header:{
-                
-            }})
+            const l= await axios.get('http://localhost:3030/api/movies')
             console.log(l.data);
             setlist(l.data);
         }
@@ -26,3 +24,4 @@ const Animals = () => {
 }
 
 export default Animals;
+    
