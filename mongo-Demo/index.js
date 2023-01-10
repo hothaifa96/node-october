@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
-mongoose.connect('mongodb://127.0.0.1:27017/movies')
+mongoose.connect('mongodb://127.0.0.1:27017/test')
     .then(()=> console.log('database connected  successfully'))
     .catch( err => console.error('couldnt connect to the database',err))
 
@@ -45,25 +45,24 @@ const Movies = mongoose.model('Movies', new mongoose.Schema({
             },
             message:'a comments should be filled with at least 1 value'
         }
-    }
-}))
+    }}))
 
 async function createMovie(){
     const movie = new Movies({
         name: 'it',
         length : 4.2,
         genre : 'horror',
-        comments: undefined
+        comments: ['hello','wussop']
     });
     try{
-        const result =await movie.save() // insert the value to db
+        const result = await movie.save() // insert the value to db
         console.log(result)
     }
     catch(err){
         console.log(err.message)
     }
-
 }
+createMovie();
 
 
 async function getMovies(){
@@ -115,7 +114,7 @@ async function updateMovie(id){
         // const result = await movie.save();
         // console.log(result)
     // update the elemnt inside mongo 
-
+    
 
     const result = await Movies.findByIdAndUpdate(id,{
         $set:{ 
@@ -132,4 +131,8 @@ async function deleteMovie(){
     console.log(result)
 }
 
-createMovie();
+
+
+
+
+

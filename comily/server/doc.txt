@@ -1,0 +1,12 @@
+routes : 
+    routes    method        params                         des    
+ /api/comments  GET   []                        (return comment body and name  from the data base)
+ /api/comments  POST  [{name,body}]             (add to the database a new comment)
+ /api/users     POST  [{name,password,email}]   (signin logic )
+ /api/auth      POST  [{email,password}]        (login logic)
+
+
+ functions:
+
+
+middlewares: 
