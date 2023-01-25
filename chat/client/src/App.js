@@ -2,7 +2,7 @@ import "./App.css";
 import io from 'socket.io-client'
 import {useState ,useEffect} from 'react'
 
-const socket = io.connect("http://localhost:3030")
+const socket = io.connect("http://localhost:4000")
 
 function App() {
 
