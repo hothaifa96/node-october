@@ -15,19 +15,13 @@ const io = new Server(server,{
 
 
 
-const users=[]
+const users={}
 
 
 io.on('connection',socket=>{
     console.log(`socket connected ${socket.id}`)
-
     socket.on('join server',(username)=>{
-        const user={
-            username,
-            id:socket.id
-        }
-        console.log(user)
-        users.push(user)
+        users[username] = socket.id
         io.emit('new user',users)
     })
     socket.on('join room',(room)=>{
@@ -36,7 +30,9 @@ io.on('connection',socket=>{
     })
     socket.on('send message',({content,to,sender})=>{
         var message={content,sender,to}
-        socket.to(to).emit("new message",message)
+        console.table(message)
+        console.log(users)
+        socket.to(users[to]).emit("new message",message)
     })
 
 })

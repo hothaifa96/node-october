@@ -38,20 +38,41 @@
 }
 
 .margen{
-  margin: 10px;
-  font-size: 44pt;
+  margin: 1vw;
+  font-size: 3vw;
   color: grey;
 }
 
 .send{
-  font-size: 33pt;
+  font-size: 4vw;
   width: 17vw;
   height: 5vw;
-  margin-bottom: 22px;
+  margin-bottom: 0vw;
+  align-items:center;
+  padding-bottom: 3vw;
 }
 
 .h{
   position:absolute ;
   left: 0;
   top: 0;
+}
+
+.sidebar{
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 10vh; /* Stay at the top */
+  left: 0;
+  
+}
+
+.sidebar h1{
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
 }
