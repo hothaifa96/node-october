@@ -41,7 +41,7 @@ const Main = () => {
             ></Chat>
             <Sidebar 
             username={username}  
-            allUsers={Object.entries(allUsers)}
+            allUsers={allUsers}
             setcurrenRoom={setcurrenRoom}
             ></Sidebar>
         </div>

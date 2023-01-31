@@ -8,8 +8,8 @@ const Sidebar = (props) => {
             {allUsers.map(user=>
             <button 
             className='btn btn-info m-1'  
-            onClick={()=>setcurrenRoom(user[0])}
-            >{user[0]}</button>)}
+            onClick={()=>setcurrenRoom(user._id)}
+            >{user.name}</button>)}
         </div>
     );
 }
